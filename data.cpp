@@ -59,7 +59,7 @@ bool Data::loadTable(QString path, QStandardItemModel *model)
 
     while(!stream.atEnd()) {
         QString line = stream.readLine();
-        model->appendRow(new QStandardItem(line));
+        model->appendRow(new QStandardItem(line));//每次执行完这一句，就会调用一次filterAcceptsRow()
     }
     file.close();
     qDebug() << "Loaded: " << path;

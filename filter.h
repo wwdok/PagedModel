@@ -41,7 +41,7 @@ protected:
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
 
 private:
-    bool pagedata;
+    bool pagingdata;
     int pagesize;
     int currentpage;
     QString regxpattern;

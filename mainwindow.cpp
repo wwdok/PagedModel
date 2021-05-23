@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    filter.setPageData(true);
+    filter.setPageData(true);//如果设为false，则1000条数据都展示在要给页面，没有分页效果，如果设为true，每页10行，共100页。
     filter.setPageSize(10);
     filter.setCurrentPage(0);
     connect(&filter,&Filter::started,this,&MainWindow::started);
@@ -83,19 +83,19 @@ void MainWindow::makeTestData()
     QString path = QGuiApplication::applicationDirPath();
     path.append("/test.txt");
 
-    if(!data.writeTest(path,1000))
+    if(!data.writeTest(path,1000))//writeTest()函数会生成0到999的数字并保存在path路径里的文件中
     {
         QMessageBox::critical(this,"Error","Could not create test data!");
         return;
     }
-    loadFile(path);
+    loadFile(path);//紧接着加载生成的数字到qtableview上
 }
 
 void MainWindow::loadFile(QString path)
 {
     Data data;
     ui->statusbar->showMessage("No file");
-    if(!data.loadTable(path,&model))
+    if(!data.loadTable(path,&model))//loadTable()会把数据从刚刚生成的path文件内提取并显示在qtableview上
     {
         QMessageBox::critical(this,"Error","Could not load file!");
         return;
